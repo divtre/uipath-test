@@ -51,7 +51,7 @@ pipeline {
             steps {
                 echo "Deploying ${BRANCH_NAME} to UAT "
               
-        )
+        
             }
         }
 

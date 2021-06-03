@@ -11,8 +11,8 @@ pipeline {
         MINOR = '0'
         //Orchestrator Services
         UIPATH_ORCH_URL = "https://cloud.uipath.com/"
-        UIPATH_ORCH_LOGICAL_NAME = "AIFabricDemo"
-        UIPATH_ORCH_TENANT_NAME = "UATdfds611009"
+        UIPATH_ORCH_LOGICAL_NAME = "viasapggdaoj"
+        UIPATH_ORCH_TENANT_NAME = "DefaultTenant"
         UIPATH_ORCH_FOLDER_NAME = "Shared"
     }
 
@@ -54,6 +54,17 @@ pipeline {
         stage('Deploy to UAT') {
             steps {
                 echo "Deploying ${BRANCH_NAME} to UAT "
+                UiPathDeploy (
+                packagePath: "Output\\${env.BUILD_NUMBER}",
+                orchestratorAddress: "${UIPATH_ORCH_URL}",
+                orchestratorTenant: "${UIPATH_ORCH_TENANT_NAME}",
+                folderName: "${UIPATH_ORCH_FOLDER_NAME}",
+                environments: 'DEV',
+                //credentials: [$class: 'UserPassAuthenticationEntry', credentialsId: 'APIUserKey']
+                credentials: Token(accountName: "${UIPATH_ORCH_LOGICAL_NAME}", credentialsId: 'APIUserKey'),
+
+
+        )
             }
         }
 

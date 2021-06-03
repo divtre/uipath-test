@@ -2,7 +2,7 @@ pipeline {
       agent {
     node {
       label 'my-defined-label'
-      customWorkspace 'C:\cicd'
+      customWorkspace '/cicd/'
     }
         // Environment Variables
         environment {

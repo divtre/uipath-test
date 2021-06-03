@@ -1,6 +1,9 @@
 pipeline {
-    agent any
-
+      agent {
+    node {
+      label 'my-defined-label'
+      customWorkspace 'C:\cicd'
+    }
         // Environment Variables
         environment {
         MAJOR = '1'
